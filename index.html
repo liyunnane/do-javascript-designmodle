@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js设计模式</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/excrise.js"></script>
+</head>
+<body>
+<div id="head">
+    <span class="title">Javascript 设计模式</span>
+    <span class="author">李云</span>
+    <span class="date">2016-11-21</span>
+</div>
+<div id="content">
+    <div class="left">
+        <ul class="catalog">
+            <li class="lis" style="background:#8005b1;color:#fff"><span>灵活的语言</span></li>
+            <li class="lis"><span>面向对象编程</span></li>
+            <li class="lis"><span>简单工厂模式12.7</span></li>
+            <li class="lis"><span>工厂方法模式12.8</span></li>
+            <li class="lis"><span>抽象工厂模式12.8</span></li>
+            <li class="lis"><span>建造者模式12.8</span></li>
+            <li class="lis"><span>原型模式12.9</span></li>
+            <li class="lis"><span>单列模式</span></li>
+            <li class="lis"><span>外观模式</span></li>
+            <li class="lis"><span>适配器模式</span></li>
+            <li class="lis"><span>代理模式</span></li>
+            <li class="lis"><span>装饰着模式</span></li>
+            <li class="lis"><span>桥接模式</span></li>
+            <li class="lis"><span>组合模式</span></li>
+            <li class="lis"><span>享元模式</span></li>
+            <li class="lis"><span>模板方法模式</span></li>
+            <li class="lis"><span>观察者模式</span></li>
+            <li class="lis"><span>状态模式</span></li>
+            <li class="lis"><span>策略模式</span></li>
+            <li class="lis"><span>职责外链模式</span></li>
+            <li class="lis"><span>命令模式</span></li>
+            <li class="lis"><span>访问者模式</span></li>
+            <li class="lis"><span>中介者模式</span></li>
+            <li class="lis"><span>备忘录模式</span></li>
+            <li class="lis"><span>迭代器模式</span></li>
+            <li class="lis"><span>解释器模式</span></li>
+            <li class="lis"><span>链模式</span></li>
+            <li class="lis"><span>委托模式</span></li>
+            <li class="lis"><span>数据访问对象</span></li>
+            <li class="lis"><span>截流模式</span></li>
+            <li class="lis"><span>简单模板模式</span></li>
+            <li class="lis"><span>惰性模式</span></li>
+            <li class="lis"><span>参与者模式</span></li>
+            <li class="lis"><span>等待者模式</span></li>
+            <li class="lis"><span>同步模块模式</span></li>
+            <li class="lis"><span>一部模块模式</span></li>
+            <li class="lis"><span>Widget模式</span></li>
+            <li class="lis"><span>MVC模式</span></li>
+            <li class="lis"><span>MVP模式</span></li>
+            <li class="lis"><span>MVVM模式</span></li>
+        </ul>
+    </div>
+    <div class="right">
+        <ul class="articles">
+            <li class="article" style="display:block">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>入职的第一天</h4>
+                        <div>用function定义的函数也是全局变量。最初定义的函数办法是function aa()但此种方法也会生成全局变量aa</div>
+                    </li>
+                    <li class="dange">
+                        <h4>函数的另一种形式</h4>
+                        <div>var aa=function(){}是函数的另一种表现形式，但是这个方法在用的时候要提前声明。全局声明变量在团队开发中，就会容易被别人覆盖</div>
+                    </li>
+                    <li class="dange">
+                        <h4>用对象收编变量</h4>
+                        <div>为了减少团队中被别人覆盖的概率，可以用对象来收编变量。例如：
+
+                            <pre>
+                                var checkObject={
+                                    checkName:function(){
+                                        //验证姓名
+                                    },
+                                    checkEmail:function(){
+                                        //验证邮箱
+                                    },
+                                    checkPassword:function(){
+                                        //验证密码
+                                    },
+                                }</pre>
+                            此时将所有的函数作为checkObject对象的方法，这样我们就只有一个对象，使用的时候用点语法进行访问。
+                        </div>
+                    </li>
+                    <li class="dange">
+                        <h4>对象的另一种形式</h4>
+                        <div>既然可以用点语法进行访问，那么也可以用点语法进行创建。在js中函数也是对象，声明一个对象然后给它添加方法
+                            例如：
+                            <pre>
+                                var checkObject=function(){};{}
+                                checkObject.checkName=function(){
+                                     //验证名字
+                                 }；
+                                checkObject.checkEmail=function(){
+                                     //验证邮箱
+                                }；
+                                </pre>
+                            但是这个对象类再用new创建新的对象时，新创建的对象是不能继承这些方法的。
+                        </div>
+                    </li>
+                    <li class="dange">
+                        <h4>真假对象</h4>
+                        <div>如果你想简单的复制一份出来，可以将这些方法放在一个函数对象中，例如：
+                            <pre>
+                                var checkObject=function(){
+                                    return{
+                                        checkName:function(){
+                                          //验证名字
+                                        },
+                                        checkEmail:function(){
+                                          //验证邮箱
+                                        },
+                                    }
+                                }
+                                </pre>
+                            使用的时候就是var a=checkObject();a.checkEmail()
+                        </div>
+                    </li>
+                    <li class="dange">
+                        <h4>类也可以</h4>
+                        <div>
+                            虽然创建的新对象完成了我们的需求，但是它不是一个真正意义上类的创建方法。并且创建的a与checkObject没有任何关系因此我们稍微改造一下例如
+                            <pre>
+                                var checkObject=function(){
+                                        this.checkName=function(){
+                                          //验证名字
+                                        },
+                                        this.checkEmail=function(){
+                                          //验证邮箱
+                                        },
+                                }
+                                </pre>
+                            使用的时候就是var a=new checkObject();a.checkEmail();如果每个人都对这个类实例化了，那么每个人都将有自己的一套方法如果每个人都对这个类实例化了
+                        </div>
+                    </li>
+                    <li class="dange">
+                        <h4>一个检测类</h4>
+                        <div>上述这种办法是通过this定义的，所以每一次通过new关键字创建新对象的时候，新创建的对象都会对类的this上的属性进行复制，然而有时候这么做造成的消耗是很奢侈的，因此处理成如下形式
+                            <pre>
+                                var checkObject=function(){
+                                    checkObject.prototype.checkName=function(){
+                                          //验证名字
+                                        },
+                                    checkObject.prototype.checkEmail=function(){
+                                          //验证邮箱
+                                        },
+                                }
+                                </pre>
+                            这样创建对象实例的时候，创建出来啊的对象所拥有的方法就都是一个了。因为他们都要依赖prototype原型依次寻找，而找到的方法都是同一个他们都绑定在checkObject对象类的原型上。当然写可以简化为如下形式
+                            <pre>
+                                var checkObject=function(){
+                                    checkObject.prototype={
+                                        checkName:function(){
+                                          //验证名字
+                                        },
+                                        checkEmail:function(){
+                                          //验证邮箱
+                                        },
+                                    }
+                                }
+                                </pre>
+                            但是这两种方式不能混着用，因为一旦混用，如果在后面为对象的原型对象复制新对象时，那么它将会覆盖掉之前对prototype对象赋值的方法。
+
+                        </div>
+                    </li>
+                    <li class="dange">
+                        <h4>方法还可以这样用</h4>
+                        <div>链式的调用方法：
+                            <pre>
+                                var checkObject={
+                                    checkName:function(){
+                                        //验证名字
+                                        return this;
+                                    },
+                                    checkEmail:function(){
+                                        //验证邮箱
+                                        return this;
+                                    },
+                                }
+                                checkObject.checkEmail().checkName();
+                                </pre>
+                            当然也可以这样写
+                            <pre>
+                                var checkObject=function(){
+                                  checkObject.prototype={
+                                    checkName:function(){
+                                        //验证名字
+                                        return this;
+                                    },
+                                    checkEmail:function(){
+                                        return this;
+                                        //验证邮箱
+                                    },
+                                    }
+                                }
+                                var a= new checkObject();
+                                a..checkEmail().checkName();
+                                    </pre>
+                        </div>
+                    </li>
+                    <li class="dange">
+                        <h4>函数的祖先</h4>
+                        <div>prototypr.js是一款js框架，他最大的特点就是对原生对象的扩展，因此，你也可以这样做，在原生对象上扩展方法
+                            <pre>
+                                Function.prototype.checkEmail=function(){
+                                //验证邮箱
+                                }
+                                但是这样却污染了原生的对象Function,所以别人创建的函数也会被你说创建的函数污染，造成不必要的开销，但是你可以抽象出一个统一添加方法的功能方法。例如：
+                                Function.prototype.addMethod=function(name,fn){
+                                    this[name]=fn;
+                                }
+                                var methods=function(){}或者var methods=new Function(){};
+                                methods.addMethod('checkEmail',function(){console.log(1)})
+                                methods.checkEmail();
+                                </pre>
+                        </div>
+                    </li>
+                    <li class="dange">
+                        <h4>可以链式添加码？</h4>
+                        <div>当然可以链式添加
+                            <pre>
+                                    Function.prototype.addMethod=function(name,fn){
+                                        this[name]=fn;
+                                        return this
+                                        }
+                                    var methods=function(){}或者var methods=new Function(){};
+                                    methods.addMethod('checkEmail',function(){console.log(1);return ths}).addMethod('checkName',function(){console.log(2);return})
+                                    也就可以链式调用.
+                                    methods.checkEmail().checkName();
+                                </pre>
+                        </div>
+                    </li>
+                    <li class="dange">
+                        <h4>换一种方式使用方法</h4>
+                        <div>上述用的是函数式调用方法，下面介绍用类式调用方式</div>
+                        <pre>
+                                Function.prototype.addMethod=function(name,fn){
+                                        this[name]=fn;
+                                        return this
+                                        };
+                                var methods=function(){}
+                                methods.addMethod('checkEmail',function(){console.log(1);return this}).addMethod('checkName',function(){console.log(2);return this})
+                                var m=new methods();
+                                m.checkEmail().checkName();
+                            </pre>
+                    </li>
+                </ul>
+                <ul class="chapter">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div>
+                            面向过程的编程会无端在页面中添加很多局部变量，不利于团队代码维护。<br>
+                            面向对象编程就是将你的需求抽象成一个对象，然后针对这个对象分析其特征（属性）和动作（方法）。这个对象我们称之为类，面向对象编程其中有一个特点就是封装。
+                            <p>创建一个类
+                                <div>首先声明一个函数保存在变量里，然后在这个函数的内部通过对this变量添加属性或者方法来实现对类添加属性或者方法，比如
+                                    <pre>
+                                    var book=function(){
+                                        this.id=id;
+                                        this.bookName=id;
+                                        this.price=price;
+                                    }
+                                </pre>
+                                    <div>也可以在类的原型（类也是一个对象，所以也有原型prototype）上添加属性和方法，有两种方式：
+                            <p>一种是为原型对象属性赋值例如:</p>
+                            <pre>
+                                        book.prototype.display=function(){
+                                            // 展示这本书
+                                        }
+                                    </pre>
+                            <p>另一种是将一个对象赋值给类的原型对象:</p>
+                            <pre>
+                                         book.prototype={
+                                                display:function(){
+                                                 // 展示这本书
+                                            }
+                                         }
+                                            </pre>
+                            但是这两种方法不能混用，否则会发生后者吧前者覆盖
+                        </div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div>
+                            <p>通过this添加的属性和方法跟在prototype上添加的属性和方法有什么不同？</p>
+                            回答:通过this创建的属性和方法是在当前对象上添加的，然而js是一门基于原型prototype的语言，所以每次创建一个对象时，他都有一个原型prototype用于指向其继承的属性跟方法，这样通过prototype继承的属性跟方法并不是对象自身的，所以在使用这些方法时，需要通过prototype一级一级查找来得到。这样你会发现通过this定义的属性或者方法是该对象自身所有的。所以我们每次通过类来创一个新对象时，this指向的属性和方法都会得到相应的创建。而通过prototype继承的属性或者是方法是每个对象通过prototype访问到，所以我们每次通过类创建一个新对象时，这些属性和方法不会被再次创建。
+                            <p>私有属性，私有方法，共有属性，共有方法，特权方法，构造器</p>
+                            <p>
+                                通过js函数级作用域的特征来实现在函数内部创建外界就访问不到的私有化变量和私有化方法。通过new关键字实例化对象时，由于对类执行一次，所以类的内部this上定义的属性和方法自然就可以复制到新创建的对象上，成为对象公有化的属性和方法。而其中一些方法能访问到类的私有属性和方法，因而得名特权方法。而我们在通过new、关键字实例化对象时，执行了一遍类的函数，所以里面通过调用特权方法自然就可以初始化对象的一些属性了，这些在创建对象时调用的特权方法还可以看做是类的构造器。如下：
+                            <pre>
+                            var book=function(id,name,price){
+                               //私有属性
+                               var num=1;
+                               //私有方法
+                               function checkId(){};
+                               //特权方法，也称对象公有方法
+                               this.getName=function(){};
+                               this.getPrice=function(){};
+                               this.setName=function(){};
+                               this.setPrice=function(){};
+                               this.copy=function(){};
+                               //对象公有属性
+                               this.id=id;
+                               //构造器
+                               this.setName(name);
+                               this.setPrice(price);
+                            }
+                        </pre>
+                            </p>
+                            <p>那么问题来了，在类的外部通过点语法定义的属性和方法以及在外部通过prototype定义的属性和方法又有什么作用呢？</p>
+                            <p>
+                                通过new关键字创建新对象时，由于类外面通过点语法添加的属性和方法没有执行到，所以新创建的对象中无法获取他们，但是可以通过类来使用。因此在类外面通过点语法定义的属性和方法被称为类的静态共有属性和类的静态共有方法。而类通过prototype创建的属性或者方法在类实例的对象中是可以通过this访问到的，所以我们将prototype中的属性和方法称为共有属性和共有方法。</p>
+                            <pre>
+                                //类静态公有属性(对象不能访问)
+                                book.isChinese=true;
+                                //类静态公有方法(对象不能访问)
+                                book.resetTime=function(){
+                                    console.log('new Time')
+                                };
+
+                                book.prototype={
+                                    //公有属性
+                                    isJSBook:false,
+                                    //公有方法
+                                    display:function(){}
+                                }
+                                var b=new book(11,'jaaaa',50);
+                                console.log(b.num);                //undefined
+                                console.log(b.id);                 //11
+                                console.log(b.isChinese);          //undefined
+                                console.log(b.isJSBook);           //false
+                                console.log(b.isJSBook1);          //false
+                                console.log(book.isChinese)        //true
+                            </pre>
+                        </div>
+                        <div>有时我们经常将类的静态变量通过必报来实现</div>
+                        <pre>
+                             var books = (function () {
+                                //静态私有变量
+                                var bookNum = 0;
+                                //静态私有方法
+                                function checkBook(name) {
+                                };
+                                //返回构造函数
+                                return function(newId,newName,newPrice){
+                                    //私有变量
+                                    var name,price;
+                                    //私有方法
+                                    function checkId(id) {}
+                                    //特权方法，也称对象公有方法
+                                    this.getName = function () {};
+                                    this.getPrice = function () {};
+                                    this.setName = function (){} ;
+                                    this.setPrice = function () {};
+                                    this.copy = function () {};
+                                    bookNum++;
+                                    if(bookNum>100){
+                                        throw new err ('我们仅出版100本书');
+                                    }
+                                    //对象公有属性
+                                    this.id = id;
+                                    //构造器
+                                    this.setName(name);
+                                    this.setPrice(price);
+                                }
+                            })();
+                            books.prototype={
+                                //公有属性
+                                isJSBook:false,
+                                //公有方法
+                                display:function(){}
+                            }
+                        </pre>
+                        <p>
+                            闭包是有权访问另一个函数作用域中变量的函数，即在一个函数内部创建另一个函数，我们将这个闭包作为创建对象的构造函数。这样它既是闭包，有事可实例对象的函数既可以访问到类函数作用域中的变量，比如bookName,此时这个变量叫做叫做静态私有变量。但是在闭包外部添加原型属性和方法看上去像是脱离了闭包这个类，所以在闭包内部实现一个完整的类然后将其返回。如下：</p>
+                        <pre>
+                             var books = (function () {
+                                //静态私有变量
+                                var bookNum = 0;
+                                //静态私有方法
+                                function checkBook(name) {
+                                };
+                                //返回构造函数
+                                function _book(newId,newName,newPrice){
+                                    //私有变量
+                                    var name,price;
+                                    //私有方法
+                                    function checkId(id) {}
+                                    //特权方法，也称对象公有方法
+                                    this.getName = function () {};
+                                    this.getPrice = function () {};
+                                    this.setName = function (){} ;
+                                    this.setPrice = function () {};
+                                    this.copy = function () {};
+                                    bookNum++;
+                                    if(bookNum>100){
+                                        throw new err ('我们仅出版100本书');
+                                    }
+                                    //对象公有属性
+                                    this.id = id;
+                                    //构造器
+                                    this.setName(name);
+                                    this.setPrice(price);
+                                }
+                                books.prototype={
+                                   //公有属性
+                                   isJSBook:false,
+                                   //公有方法
+                                   display:function(){}
+                                };
+                                //返回类
+                                return _book;
+                            })();
+                        </pre>
+                        <p>创建对象的安全模式</p>
+                        <p>如果用构造函数实例化对象，那么经常容易忘记使用new关键字，而new关键字的作用可以看做是对当前对象的this不停的赋值，比如:</p>
+                        <pre>
+                            var book=function(title,time,type){
+                                this.title=title;
+                                this.time=time;
+                                this.type=type;
+                            };
+                            var book1=book('js','2014','jssss');
+                        </pre>
+                        <p>
+                            假设直接这样子实际上是在调用函数，而这个函数是在全局作用域中执行的。那么当执行this.title时，this指向的就是全局变量window，因此console.log(book1)的结果是undefined而console.log(window.title);的结果是js那么如何避免使用new关键字来实例化对象呢？如下:</p>
+                        <pre>
+                            var book=function(title,time,type){
+                                //判断执行过程中this是否是当前这个对象（如果是则说明是用new创建的）
+                                if(this instanceof book){
+                                    this.title=title;
+                                    this.time=time;
+                                    this.type=type;
+                                }else{
+                                    return new book(title,time,type);
+                                }
+                            };
+                            var book1=book('js','2014','jssss');
+                            console.log(book1.title);
+                            console.log(window.title);
+                        </pre>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div>
+                            <ul>
+                                <p>
+                                    每个类都有三个部分，第一部分是构造函数内部的这是提供实例化对象复制用的。第二部分是构造函数外的直接通过点语法添加的，着是供类使用的。实例化对象是范文不到的，第三部分是类的原型中的，实例化对象可以通过其原型链间接的访问到。也是供所有实例化对象所共用的。
+                                </p>
+                                <p>
+                                    六种继承方式
+                                </p>
+                                <li>
+                                    <p>&nbsp;&nbsp;&nbsp;类式继承如下</p>
+                                    <div>&nbsp;&nbsp;&nbsp;
+                                        <p>类的原型对象的作用就是为类的原型添加共有方法，但是类不能直接访问这些属性和方法，必须通过原型prototype来访问。而我们实例化一个父类的时候，新创建的对象复制了父类的构造函数内的属性和方法并且将原型_proto_指向了父类的原型对象。这样就拥有了父类的原型对象上的属性和方法，并且这个新创建的对象可直接访问到父类原型对象上的属性和方法。如果我们将这个新创建的对象赋值给子类的原型，那么子类的原型就可以访问到父类的原型属性和方法。</p>
+                                        <p>类式继承原理：新创建的方法不仅可以访问父类原型上的属性和方法</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p>&nbsp;&nbsp;&nbsp;构造函数继承</p>
+                                    <div>&nbsp;&nbsp;&nbsp;</div>
+                                </li>
+                                <li>
+                                    <p>&nbsp;&nbsp;&nbsp;组合继承</p>
+                                    <div>&nbsp;&nbsp;&nbsp;</div>
+                                </li>
+                                <li>
+                                    <p>&nbsp;&nbsp;&nbsp;原型式继承</p>
+                                    <div>&nbsp;&nbsp;&nbsp;</div>
+                                </li>
+                                <li>
+                                    <p>&nbsp;&nbsp;&nbsp;寄生式继承</p>
+                                    <div>&nbsp;&nbsp;&nbsp;</div>
+                                </li>
+                                <li>
+                                    <p>&nbsp;&nbsp;&nbsp;寄生组合式继承</p>
+                                    <div>&nbsp;&nbsp;&nbsp;</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+            <li class="article" style="display:none">
+                <ul class="list">
+                    <li class="dange">
+                        <h4>面向过程与面向对象</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>封装</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多继承</h4>
+                        <div></div>
+                    </li>
+                    <li class="dange">
+                        <h4>多态</h4>
+                        <div></div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="clear"></div>
+<div id="footer"></div>
+</body>
+</html>
+<script>
+    var content = document.getElementById('content');
+    content.style.height = (document.documentElement.clientHeight - 44) + 'px';
+    var catalog = document.getElementsByClassName('catalog');
+    var lis = document.getElementsByClassName('lis');
+    var article = document.getElementsByClassName('article');
+    for (var i = 0; i < lis.length; i++) {
+        lis[i].index = i;
+        lis[i].onclick = function () {
+            for (var j = 0; j < article.length; j++) {
+                article[j].style.display = 'none';
+                lis[j].style.background = '#fff';
+                lis[j].style.color = '#000';
+            }
+            this.style.background = '#8005b1';
+            this.style.color = '#fff';
+            article[this.index].style.display = 'block';
+        }
+    }
+    function Person() {
+        this.name = 'John';
+    }
+    var person = new Person();
+    Person.prototype.say = function () {
+        console.log('Hello,' + this.name);
+    };
+    console.log(person.prototype);
+    console.log(Person.prototype)
+</script>
